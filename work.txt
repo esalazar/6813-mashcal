@@ -1,0 +1,23 @@
+Overview
+High fidelity in look and feel
+Low fidelity in breadth and depth
+
+Tasks
+Touch/Drag selctor
+Navigation
+Modal simulations
+Autocomplete
+Fake Real Data - Jake and Kate
+Buttons/colors/typefaces
+
+Edgar
+Buttons/colors/typefaces
+Navigation
+
+Ulzi
+Autocomplete/Create page
+Fake Real Data
+Modal simulations
+
+Lopopolo
+Touch/Drag Scheduler
