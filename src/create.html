@@ -1,24 +1,70 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>MashCal</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="style/default.css" />
 		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 	</head>
 	<body>
-		<div data-role="page">
+		<div data-role="page" id="index">
 			<div data-role="header">
 				<h1>MashCal</h1>
+				<a href="settings.html" data-icon="gear" data-iconpos="notext" data-theme="b" rel="external"></a>
 			</div>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-filter="false">
-					<li><a href="create.html">Create</a></li>
-					<li><a href="my_events.html">My Events</a></li>
+					<li><a href="create.html" rel="external">Create</a></li>
+					<li><a href="my_events.html" rel="external">My Events</a></li>
 				</ul>
 			</div>
+		</div>
+		<div data-role="page" id="create">
+			<div data-role="header">
+				<a href="index.html" data-icon="home" data-iconpos="notext" data-theme="b" rel="external"></a>
+				<h1>Create</h1>
+				<a href="settings.html" data-icon="gear" data-iconpos="notext" data-theme="b" rel="external"></a>
+			</div>
+			<div data-role="content">
+				Create
+			</div>
 			<div data-role="footer">
-				<h1>Navigation</h1>
+				<span class="ui-title">
+					<a href="#schedule" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Schedule</a>
+				</span>
+			</div>
+		</div>
+		<div data-role="page" id="schedule">
+			<div data-role="header">
+				<a href="index.html" data-icon="home" data-iconpos="notext" data-theme="b" rel="external"></a>
+				<h1>Schedule</h1>
+				<a href="settings.html" data-icon="gear" data-iconpos="notext" data-theme="b" rel="external"></a>
+			</div>
+			<div data-role="content">
+				Schedule
+			</div>
+			<div data-role="footer">
+				<span class="ui-title">
+					<a href="#create" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Create</a>
+					<a href="#invite" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Invite</a>
+				</span>
+			</div>
+		</div>
+		<div data-role="page" id="invite">
+			<div data-role="header">
+				<a href="index.html" data-icon="home" data-iconpos="notext" data-theme="b" rel="external"></a>
+				<h1>Invite</h1>
+				<a href="settings.html" data-icon="gear" data-iconpos="notext" data-theme="b" rel="external"></a>
+			</div>
+			<div data-role="content">
+				Invite
+			</div>
+			<div data-role="footer">
+				<span class="ui-title">
+					<a href="#schedule" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
+				</span>
 			</div>
 		</div>
 	</body>
