@@ -19,6 +19,13 @@
   border-color: #333 !important;
 }
 
+.selector-respond-accept {
+  background-color: green !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
+}
+
 .sel-dark {
   background-color: #333;
   border-color: #CCC;
@@ -59,5 +66,8 @@ body, div[data-role="page"], .swipeArea {
 
 .selector-day-descriptor {
   float : left;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 

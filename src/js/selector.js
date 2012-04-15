@@ -41,9 +41,9 @@ var selectorize = function(id, mode) {
   for (var h=0; h < 24; h++) {
     $(".selector-hour-" + h).css({ display : "none", opacity : 0 });
   }
-  var selWidth = (100 / (SELECTOR_WIDTH + 1) - 5);
+  var selWidth = (100 / (1.5 * SELECTOR_WIDTH));
   $(".selector-hour").css({ width : selWidth + "%" });
-  $(".selector-day-descriptor").css({ width : selWidth + "%" });
+  //$(".selector-day-descriptor").css({ width : selWidth + "%" });
   $(id).css({ height : "70%" });
 
   // init the display
@@ -62,10 +62,10 @@ var selectorize = function(id, mode) {
   } else {
     $(".selector-hour").bind("tap", function(e) {
       if ($(this).hasClass("selector-respond-selected")) {
-        if ($(this).hasClass("selector-respond-deny")) {
-          $(this).removeClass("selector-respond-deny");
+        if ($(this).hasClass("selector-respond-accept")) {
+          $(this).removeClass("selector-respond-accept");
         } else {
-          $(this).addClass("selector-respond-deny");
+          $(this).addClass("selector-respond-accept");
         }
       }
     });
