@@ -2,13 +2,15 @@
 $(document).ready(function (){	
 		
 	var availableTags = ["Bob", "Kate", "Tito", "Josh"];
-	
-	$("#searchField").autocomplete({
+	$( ".selector" ).bind( "pageview", function(event, ui) {
+		alert("");
+	});
+	/*$("#searchField").autocomplete({
 		target: $('#suggestions'),
 		source: availableTags,
-		link: 'friend=',
-		minLength: 1,
+		link: '',
 		//select: function(event, ui) { alert("");}
 	});
+	*/
 	
 });
