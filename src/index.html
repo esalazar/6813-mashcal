@@ -4,12 +4,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>MashCal</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
 		<link rel="stylesheet" href="style/default.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 		<script type="text/javascript" src="jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
-		<script src="js/jqm.autoComplete.js"></script>
-		<script type="text/javascript" src="js/invite.js"></script>
+		<script type="text/javascript" src="js/jqm.autoComplete.js"></script>
+		
 	</head>
 	<body>
 		<div data-role="page" id="index">
@@ -75,12 +76,13 @@
 			</div>
 			<div data-role="content">
 			
-				<div class="ui-widget" name="search_box">
+				
 					<label class="ui-input-text"> Search:
 					</label>
-	    			<input class="ui-autocomplete-input" type="text" name="input" id="search_box" placeholder="Search">  
-					<ul id="suggestions" data-role="listview" data-inset="true"></ul>	
-	    		</div >
+	    			<input class="ui-body-d" type="text" name="input" data-type= "search" id="searchField" placeholder="Search People">
+					
+					<ul id="suggestions" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>		
+	    		
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
@@ -116,5 +118,19 @@
 			<div data-role="footer">
 			</div>
 		</div>
+		<script>
+
+		$("#invite").bind("pageshow", function(e) {
+
+			var availableTags = ["Bob", "Kate", "Tito", "Josh"];
+
+			$("#searchField").autocomplete({
+				target: $('#suggestions'),
+				source: availableTags,
+				link: 'testing.cfm?term=',
+				minLength: 1
+			});
+		});
+		</script>
 	</body>
 </html>
