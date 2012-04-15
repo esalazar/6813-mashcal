@@ -13,3 +13,13 @@
 .selector-hour {
   text-align: center;
 }
+
+.sel-more-left, .sel-more-right {
+  float: left;
+}
+
+/* hack to get relative heights to work */
+body, div[data-role="page"], .swipeArea {
+  height: 100%;
+}
+
