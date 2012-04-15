@@ -76,13 +76,13 @@ var scrollSelector = function(direction) {
   if (direction < 0) {
     currentHour = Math.max(0, currentHour - 1);
   } else {
-    currentHour = Math.min(23 - SELECTOR_WIDTH, currentHour + 1);
+    currentHour = Math.min(23 + 1 - SELECTOR_WIDTH, currentHour + 1);
   }
   // short circuit if nothing has changed
   if (oldCurrentHour === currentHour) return;
 
   // more indicators
-  if (currentHour === 23 - SELECTOR_WIDTH) {
+  if (currentHour === 23 + 1 - SELECTOR_WIDTH) {
     $(".sel-more-right").css({ display : "none" });
   } else {
     $(".sel-more-right").css({ display : "block" });
