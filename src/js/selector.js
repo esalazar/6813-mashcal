@@ -15,6 +15,7 @@ var selectorize = function(id) {
     grid += "<div class='selector-day' id='selector-day-" + i + "'>";
     grid += "<div class='selector-day-descriptor'>" + monthToNameMap[date.getMonth()] +
             " " + date.getDate() + "</div>";
+    grid += "<div class='sel-more-left'>...</div>";
     for (var h=0; h < 24; h++) {
       var time = h % 12;
       if (time === 0) time = 12;
@@ -26,6 +27,7 @@ var selectorize = function(id) {
       grid += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
       polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
     }
+    grid += "<div class='sel-more-right'>...</div>";
     grid += "</div>";
     polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
   }
@@ -74,10 +76,23 @@ var scrollSelector = function(direction) {
   if (direction < 0) {
     currentHour = Math.max(0, currentHour - 1);
   } else {
-    currentHour = Math.min(23, currentHour + 1);
+    currentHour = Math.min(23 - SELECTOR_WIDTH, currentHour + 1);
   }
   // short circuit if nothing has changed
   if (oldCurrentHour === currentHour) return;
+
+  // more indicators
+  if (currentHour === 23 - SELECTOR_WIDTH) {
+    $(".sel-more-right").css({ display : "none" });
+  } else {
+    $(".sel-more-right").css({ display : "block" });
+  }
+
+  if (currentHour === 0) {
+    $(".sel-more-left").css({ display : "none" });
+  } else {
+    $(".sel-more-left").css({ display : "block" });
+  }
 
   if (direction < 0) {
     $(".selector-hour-" + (currentHour + SELECTOR_WIDTH)).animate({ opacity : 0 }, "fast",
