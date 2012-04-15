@@ -28,8 +28,15 @@
 				<h1>Create</h1>
 				<a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
 			</div>
-			<div data-role="content">
-				Create
+			<div data-role="content" class="center">
+				<div data-role="fieldcontain">
+					<label for="title">Title:</label>
+					<input name="title" id="title"></input>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="description">Description:</label>
+					<textarea name="description" id="description"></textarea>
+				</div>
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
@@ -79,7 +86,7 @@
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
-					<a href="#index" class="ui-btn-left" data-role="button" data-theme="f" data-icon="delete" data-inline="true" data-rel="back">Decline</a>
+					<a href="#index" class="ui-btn-left" data-role="button" data-theme="f" data-icon="delete" data-inline="true" data-rel="back">Discard</a>
 					<a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Apply</a>
 				</span>
 			</div>
