@@ -43,8 +43,7 @@ var selectorize = function(id, mode) {
   }
   var selWidth = (100 / (1.5 * SELECTOR_WIDTH));
   $(".selector-hour").css({ width : selWidth + "%" });
-  //$(".selector-day-descriptor").css({ width : selWidth + "%" });
-  $(id).css({ height : "70%" });
+  $(id).css({ height : "100%" });
 
   // init the display
   for (var h=currentHour; h < currentHour + SELECTOR_WIDTH; h++) {
