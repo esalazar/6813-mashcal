@@ -1,0 +1,25 @@
+.selector-selected {
+  background-color: #396B9E !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+}
+
+.sel-dark {
+  background-color: #333;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+}
+
+.selector-hour {
+  text-align: center;
+}
+
+.sel-more-left, .sel-more-right {
+  float: left;
+}
+
+/* hack to get relative heights to work */
+body, div[data-role="page"], .swipeArea {
+  height: 100%;
+}
+
