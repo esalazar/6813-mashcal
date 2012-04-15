@@ -27,21 +27,20 @@ var selectorize = function(id) {
       grid += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
       polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
     }
-    grid += "<div class='sel-more-right'>...</div>";
+    grid += "<div class='sel-more-right'>...</div><div style='clear:both'></div>";
     grid += "</div>";
     polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
   }
   $(id).append(grid);
 
+  // time for the dynamic css bits
   // hide everything
   for (var h=0; h < 24; h++) {
     $(".selector-hour-" + h).css({ display : "none", opacity : 0 });
   }
   var selWidth = (100 / (SELECTOR_WIDTH + 1) - 5);
-  $(".selector-hour").css({ display : "none", float : "left",
-                            width : selWidth + "%", height : "100%" });
-  $(".selector-day").css({ clear : "both", width : "100%", height : "10%", "padding-bottom" : "3%" });
-  $(".selector-day-descriptor").css({ width : selWidth + "%", float : "left" });
+  $(".selector-hour").css({ width : selWidth + "%" });
+  $(".selector-day-descriptor").css({ width : selWidth + "%" });
   $(id).css({ height : "70%" });
 
   // init the display
@@ -49,7 +48,7 @@ var selectorize = function(id) {
     $(".selector-hour-" + h).css({ display : "block", opacity : 1 });
   }
 
-  $(".selector-hour").bind("taphold", function(e) {
+  $(".selector-hour").bind("tap", function(e) {
     if ($(this).hasClass("selector-selected")) {
       $(this).removeClass("selector-selected");
     } else {
