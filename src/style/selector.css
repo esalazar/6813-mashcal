@@ -2,16 +2,41 @@
   background-color: #396B9E !important;
   color: #CCC;
   text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
+}
+
+.selector-respond-selected {
+  background-color: #396B9E !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
+}
+
+.selector-respond-deny {
+  background-color: red !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
+}
+
+.selector-respond-accept {
+  background-color: green !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
 }
 
 .sel-dark {
   background-color: #333;
+  border-color: #CCC;
   color: #CCC;
   text-shadow: 0 1px 0 #333;
 }
 
 .selector-hour {
   text-align: center;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .sel-more-left, .sel-more-right {
@@ -21,5 +46,28 @@
 /* hack to get relative heights to work */
 body, div[data-role="page"], .swipeArea {
   height: 100%;
+}
+
+.selector-hour, .sel-more-left, .sel-more-right {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.selector-day {
+  width: 100%;
+  height: 15%;
+}
+
+.selector-hour {
+  display: none;
+  float: left;
+  height: 100%;
+}
+
+.selector-day-descriptor {
+  float : left;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 

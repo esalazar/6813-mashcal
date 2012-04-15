@@ -4,15 +4,18 @@
  *
  * @param id an object that can be passed to the dollar
  * function to specify the element to selectorize
+ *
+ * @param mode true if this is for general input, false if
+ * this is for responding to preselected times
  */
-var selectorize = function(id) {
+var selectorize = function(id, mode) {
   var grid = "";
   var polarity = "sel-dark";
   var date = new Date();
   date.setDate(date.getDate() - 1);
   for (var i=0; i < 7; i++) {
     date.setDate(date.getDate() + 1);
-    grid += "<div class='selector-day' id='selector-day-" + i + "'>";
+    grid += "<div class='selector-day selector-day-" + i + "'>";
     grid += "<div class='selector-day-descriptor'>" + monthToNameMap[date.getMonth()] +
             " " + date.getDate() + "</div>";
     grid += "<div class='sel-more-left'>...</div>";
@@ -27,21 +30,20 @@ var selectorize = function(id) {
       grid += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
       polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
     }
-    grid += "<div class='sel-more-right'>...</div>";
+    grid += "<div class='sel-more-right'>...</div><div style='clear:both'></div>";
     grid += "</div>";
     polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
   }
   $(id).append(grid);
 
+  // time for the dynamic css bits
   // hide everything
   for (var h=0; h < 24; h++) {
     $(".selector-hour-" + h).css({ display : "none", opacity : 0 });
   }
-  var selWidth = (100 / (SELECTOR_WIDTH + 1) - 5);
-  $(".selector-hour").css({ display : "none", float : "left",
-                            width : selWidth + "%", height : "100%" });
-  $(".selector-day").css({ clear : "both", width : "100%", height : "10%", "padding-bottom" : "3%" });
-  $(".selector-day-descriptor").css({ width : selWidth + "%", float : "left" });
+  var selWidth = (100 / (1.5 * SELECTOR_WIDTH));
+  $(".selector-hour").css({ width : selWidth + "%" });
+  //$(".selector-day-descriptor").css({ width : selWidth + "%" });
   $(id).css({ height : "70%" });
 
   // init the display
@@ -49,13 +51,25 @@ var selectorize = function(id) {
     $(".selector-hour-" + h).css({ display : "block", opacity : 1 });
   }
 
-  $(".selector-hour").bind("taphold", function(e) {
-    if ($(this).hasClass("selector-selected")) {
-      $(this).removeClass("selector-selected");
-    } else {
-      $(this).addClass("selector-selected");
-    }
-  });
+  if (mode) {
+    $(".selector-hour").bind("tap", function(e) {
+      if ($(this).hasClass("selector-selected")) {
+        $(this).removeClass("selector-selected");
+      } else {
+        $(this).addClass("selector-selected");
+      }
+    });
+  } else {
+    $(".selector-hour").bind("tap", function(e) {
+      if ($(this).hasClass("selector-respond-selected")) {
+        if ($(this).hasClass("selector-respond-accept")) {
+          $(this).removeClass("selector-respond-accept");
+        } else {
+          $(this).addClass("selector-respond-accept");
+        }
+      }
+    });
+  }
 
   // swipe events
   $(id).bind("swipeleft", function(e) { scrollSelector(1); });
@@ -109,6 +123,17 @@ var scrollSelector = function(direction) {
           { display : "block" }).animate({ opacity : 1 }, "fast");
       });
   }
+}
+
+var schedule_random_times = function(id) {
+  var sel = $(id);
+  for (var h=currentHour; h < currentHour + 4; h++) {
+    sel.find(".selector-day-0 .selector-hour-" + h).addClass("selector-respond-selected");
+  }
+  sel.find(".selector-day-1 .selector-hour-" + (currentHour + 1)).addClass("selector-respond-selected");
+  sel.find(".selector-day-3 .selector-hour-" + (currentHour + 3)).addClass("selector-respond-selected");
+  sel.find(".selector-day-4 .selector-hour-" + (currentHour - 1)).addClass("selector-respond-selected");
+  sel.find(".selector-day-4 .selector-hour-" + (currentHour)).addClass("selector-respond-selected");
 }
 
 // date stuff
