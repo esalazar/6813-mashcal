@@ -5,9 +5,11 @@
 		<title>MashCal</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 		<link rel="stylesheet" href="style/default.css" />
-		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
-		<script src="js/default.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		<script type="text/javascript" src="jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script src="js/jqm.autoComplete.js"></script>
+		<script type="text/javascript" src="js/invite.js"></script>
 	</head>
 	<body>
 		<div data-role="page" id="index">
@@ -28,15 +30,20 @@
 				<h1>Create</h1>
 				<a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
 			</div>
-			<div data-role="content" class="center">
-				<div data-role="fieldcontain">
-					<label for="title">Title:</label>
-					<input name="title" id="title"></input>
-				</div>
-				<div data-role="fieldcontain">
-					<label for="description">Description:</label>
-					<textarea name="description" id="description"></textarea>
-				</div>
+			<div data-role="content" >
+				<form action="" method= "">
+					<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br" id="title_box">
+						<label class="ui-input-text"> Title:
+						</label>
+						<input type="text" id="title_input" class="ui-input-text ui-body-d ui-corner-all ui-shadow-inset">
+					</div>
+					<div>
+						<label class="ui-input-text"> Description:
+						</label>
+						<textarea id="description" rows="8" cols="40" class="ui-input-text ui-body-d ui-corner-all ui-shadow-inset">	
+						</textarea>
+					</div>
+				</form>
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
@@ -67,7 +74,13 @@
 				<a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
 			</div>
 			<div data-role="content">
-				Invite
+			
+				<div class="ui-widget" name="search_box">
+					<label class="ui-input-text"> Search:
+					</label>
+	    			<input class="ui-autocomplete-input" type="text" name="input" id="search_box" placeholder="Search">  
+					<ul id="suggestions" data-role="listview" data-inset="true"></ul>	
+	    		</div >
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
