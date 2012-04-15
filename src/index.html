@@ -5,11 +5,19 @@
 		<title>MashCal</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 		<link rel="stylesheet" href="style/default.css" />
+		<link rel="stylesheet" href="style/selector.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
-		<script type="text/javascript" src="jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 		<script src="js/jqm.autoComplete.js"></script>
 		<script type="text/javascript" src="js/invite.js"></script>
+    <script type="text/javascript" src="js/selector.js"></script>
+
+    <style>
+      body, div[data-role="page"], .swipeArea {
+        height: 100%;
+      }
+    </style>
 	</head>
 	<body>
 		<div data-role="page" id="index">
@@ -57,7 +65,8 @@
 				<a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
 			</div>
 			<div data-role="content">
-				Schedule
+        <div id="selector"></div>
+        <script>selectorize("#selector");</script>
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
