@@ -63,7 +63,7 @@
 			</div>
 			<div data-role="content">
         <div id="selector"></div>
-        <script>selectorize("#selector");</script>
+        <script>selectorize("#selector", true);</script>
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">
@@ -108,10 +108,30 @@
 			<div data-role="header">
 				<a href="#index" data-icon="home" data-iconpos="notext" data-theme="b"></a>
 				<h1>My Events</h1>
-				<a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
+        <a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
+      </div>
+      <div data-role="content">
+        <ul data-role="listview" data-theme="c">
+          <li><a href="#respond_selector">Lunch with Jack</a></li>
+          <li><a href="#respond_selector">Sweet startup barnstorming sesh</a></li>
+          <li><a href="#respond_selector">Bowling practice</a></li>
+        </ul>
 			</div>
-			<div data-role="content">
-				My Events
+			<div data-role="footer">
+			</div>
+    </div>
+    <div data-role="page" id="respond_selector">
+			<div data-role="header">
+				<a href="#index" data-icon="home" data-iconpos="notext" data-theme="b"></a>
+				<h1>My Events</h1>
+        <a href="#settings" data-icon="gear" data-iconpos="notext" data-theme="b"></a>
+      </div>
+      <div data-role="content">
+        <div id="dummy_respond_selector"></div>
+        <script type="text/javascript">
+          selectorize("#dummy_respond_selector", false);
+          schedule_random_times("#dummy_respond_selector");
+        </script>
 			</div>
 			<div data-role="footer">
 			</div>

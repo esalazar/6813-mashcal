@@ -5,6 +5,20 @@
   border-color: #333 !important;
 }
 
+.selector-respond-selected {
+  background-color: #396B9E !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
+}
+
+.selector-respond-deny {
+  background-color: red !important;
+  color: #CCC;
+  text-shadow: 0 1px 0 #333;
+  border-color: #333 !important;
+}
+
 .sel-dark {
   background-color: #333;
   border-color: #CCC;
