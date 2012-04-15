@@ -117,6 +117,19 @@
 			<div data-role="footer">
 			</div>
 		</div>
+		<script>
 
+			$("#invite").bind("pageshow", function(e) {
+
+				var availableTags = ["Bob", "Kate", "Tito", "Josh"];
+
+				$("#searchField").autocomplete({
+					target: $('#suggestions'),
+					source: availableTags,
+					link: 'testing.cfm?term=',
+					minLength: 1
+				});
+			});
+		</script>
 	</body>
 </html>
