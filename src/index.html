@@ -116,10 +116,20 @@
         </ul>
         <span class="ui-title">&nbsp;</span>
         <script>
-          $("#suggestions li").click(function() {
-            //$(this).css({"background-color" : "green" });
-            $(this).attr({ "data-theme" : "g" });
-            return false;
+          $("#suggestions li").click(function(e) {
+				alert($(this).data-role);
+				var color = $(this).css("background-color");
+				$(this).css("backgroundImage","none");
+				if (color=='rgb(0, 128, 0)'){
+					$(this).css("background-color" , "#DFDFDF" );
+					
+				}
+				else {
+					
+					$(this).css("background-color" , "green" );
+				}
+				
+				return false;
           });
         </script>
 
