@@ -116,20 +116,18 @@
         </ul>
         <span class="ui-title">&nbsp;</span>
         <script>
-          $("#suggestions li").click(function(e) {
-				
-				var color = $(this).css("background-color");
-				$(this).css("backgroundImage","none");
-				if (color=='rgb(0, 128, 0)'){
-					$(this).css("background-color" , "#DFDFDF" );
-					
-				}
-				else {
-					
-					$(this).css("background-color" , "green" );
-				}
-				
-				return false;
+          $("#suggestions li").click(function() {
+            var classStash = $(this).attr("class-stash");
+            $(this).attr({ "class-stash" : $(this).attr("class") });
+            if ($(this).attr("data-theme") === "c") {
+              $(this).attr({ "data-theme" : "g" });
+            } else {
+              $(this).attr({ "data-theme" : "c" });
+            }
+            if (classStash != "") {
+              $(this).attr({ "class" : classStash });
+            }
+            return false;
           });
         </script>
 
