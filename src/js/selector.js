@@ -44,6 +44,18 @@ var selectorize = function(id, mode) {
   var selWidth = (100 / (1.5 * SELECTOR_WIDTH));
   $(".selector-hour").css({ width : selWidth + "%" });
   $(id).css({ height : "100%" });
+  // more indicators
+  if (currentHour === 23 + 1 - SELECTOR_WIDTH) {
+    $(".sel-more-right").css({ display : "none" });
+  } else {
+    $(".sel-more-right").css({ display : "block" });
+  }
+
+  if (currentHour === 0) {
+    $(".sel-more-left").css({ display : "none" });
+  } else {
+    $(".sel-more-left").css({ display : "block" });
+  }
 
   // init the display
   for (var h=currentHour; h < currentHour + SELECTOR_WIDTH; h++) {
@@ -76,7 +88,7 @@ var selectorize = function(id, mode) {
 }
 
 var SELECTOR_WIDTH = 3;
-var currentHour = (new Date()).getHours();
+var currentHour = Math.min(23 + 1 - SELECTOR_WIDTH, (new Date()).getHours());
 
 /**
  * scrolls the selector to the left or right by one hour
