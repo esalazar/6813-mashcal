@@ -39,7 +39,7 @@ end
 
 post "/ajax/login" do
   user = DB[:user].filter(:username => params[:username]).first
-  if user[:password] == params[:password]
+  if !user.nil? && user[:password] == params[:password]
     session[:user] = user
     return { :success => true, :userid => user[:id] }.to_json
   else
