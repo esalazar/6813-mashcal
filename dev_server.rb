@@ -2,11 +2,16 @@
 
 require "sinatra"
 require "json"
+require "sequel"
+
+DB = sequel.connect("sqlite://mashcal.db")
 
 set :public_folder, File.join(File.dirname(__FILE__), "src")
 set :views, File.join(File.dirname(__FILE__), "src")
 
 set :port, 6813
+
+enable :sessions
 
 get "/" do
   send_file("src/index.html")
@@ -32,3 +37,16 @@ get "/ajax/contacts/:id" do
   contacts.to_json
 end
 
+post "/ajax/login" do
+  user = DB[:user].filter(:username => params[:username]).first
+  if user[:password] == params[:password]
+    session[:user] = user
+    return { :success => true, :userid => user[:id] }.to_json
+  else
+    return { :success => false, :userid => nil }.to_json
+  end
+end
+
+post "/ajax/logout" do
+  session[:user] = nil
+end
