@@ -71,3 +71,6 @@ body, div[data-role="page"], .swipeArea {
   padding-bottom: 5px;
 }
 
+.invite-hidden {
+  display: none;
+}

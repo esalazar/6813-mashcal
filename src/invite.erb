@@ -1,0 +1,31 @@
+<div data-role="page" id="invite">
+  <div data-role="header">
+    <a href="#index" data-icon="home" data-theme="b">Home</a>
+    <h1>Invite</h1>
+  </div>
+  <div data-role="content" >
+
+    <ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
+      <% for @letter in @contact_letters %>
+        <li class="suggestionsDivider" data-role="list-divider"><%= @letter %></li>
+        <% for @contact in @contacts[@letter] %>
+          <li class="suggestionsNeutral" data-theme="c" data-contact="<%= @contact %>">
+            <a href="#"><%= @contact %></a>
+          </li>
+          <li class="suggestionsSel invite-hidden" data-theme="g" data-contact="<%= @contact %>">
+            <a href="#"><%= @contact %></a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <script type="text/javascript" src="js/display-contacts.js"></script>
+    <script>getContacts(); $("#invite").bind("pageinit", function() { $("#suggestions .ui-icon").remove(); })</script>
+    <span class="ui-title">&nbsp;</span>
+  </div>
+  <div data-role="footer">
+    <span class="ui-title">
+      <a href="#schedule" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
+      <a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
+    </span>
+  </div>
+</div>

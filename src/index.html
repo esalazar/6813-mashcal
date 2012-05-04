@@ -69,41 +69,7 @@
 			<div data-role="footer">
 				<span class="ui-title">
 					<a href="#create" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Create</a>
-					<a href="#invite" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Invite</a>
-				</span>
-			</div>
-		</div>
-		<div data-role="page" id="invite">
-			<div data-role="header">
-				<a href="#index" data-icon="home" data-theme="b">Home</a>
-				<h1>Invite</h1>
-			</div>
-			<div data-role="content" >
-
-        <ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
-          <li class="suggestionsDivider" data-role="list-divider">A</li>
-          <li class="suggestionsNeutral" data-theme="c" ><a href="">boom</a></li>
-					<li class="suggestionsSel" data-theme="g" ><a href="">boom</a></li>
-					<li class="suggestionsNeutral-last" data-theme="c" ><a href="#">boom</a></li>
-					<li class="suggestionsSel-last" data-theme="g" ><a href="#">boom</a></li>
-        </ul>
-        <ul id="suggestions2"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
-          <li class="suggestionsDivider" data-role="list-divider">A</li>
-					<li class="suggestionsNeutral-last" data-theme="c" ><a href="#">boom</a></li>
-        </ul>
-
-        <span class="ui-title">&nbsp;</span>
-        <script type="text/javascript">
-          $("#invite").bind("pageinit", function(event, data) {
-            console.log("before page load")
-            getContacts(0);
-          });
-        </script>
-			</div>
-			<div data-role="footer">
-				<span class="ui-title">
-					<a href="#schedule" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
-					<a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
+					<a href="#" onclick="goToInvite();" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Invite</a>
 				</span>
 			</div>
 		</div>
