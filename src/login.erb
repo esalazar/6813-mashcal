@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>MashCal</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="style/default.css" />
+		<link rel="stylesheet" href="style/selector.css" />
+
+    <!-- js frameworks -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+    <!-- our code -->
+	  <script type="text/javascript" src="js/invite.js"></script>
+    <script type="text/javascript" src="js/selector.js"></script>
+    <script type="text/javascript" src="js/display-contacts.js"></script>
+
+	</head>
+	<body>
+		<div data-role="page" id="index">
+			<div data-role="header">
+				<h1>Mashcal</h1>
+			</div>
+			<form action="/ajax/login" data-ajax="false" method="post">
+				<div data-role="content" >
+					<span class="warning"><%= flash[:error] %></span>
+					<div data-role="fieldcontain" class="ui-hide-label">
+						<label for="username"> Username:</label>
+						<input type="text" id="username" name="username" placeholder="Username" />
+					</div>
+					<div data-role="fieldcontain" class="ui-hide-label">
+						<label for="password"> Password:</label>
+						<input type="password" id="password" name="password" placeholder="Password" />
+					</div>
+					<a href="#register">Need an account?</a>
+				</div>
+				<div data-role="footer">
+					<span class="ui-title">
+						<button type="submit" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Login</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
