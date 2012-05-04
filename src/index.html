@@ -15,8 +15,9 @@
   <script type="text/javascript" src="js/jqm.autoComplete.js"></script>
     <!-- our code -->
 
-	<script type="text/javascript" src="js/invite.js"></script>
+	  <script type="text/javascript" src="js/invite.js"></script>
     <script type="text/javascript" src="js/selector.js"></script>
+    <script type="text/javascript" src="js/display-contacts.js"></script>
 
 	</head>
 	<body>
@@ -42,7 +43,7 @@
 			<div data-role="content" >
 				<div data-role="fieldcontain" class="ui-hide-label">
 					<label for="title_input"> Title:</label>
-					<input type="text" id="title_input" placeholder="Title"></input>
+					<input type="text" id="title_input" placeholder="Title" />
 				</div>
 				<div data-role="fieldcontain" class="ui-hide-label">
 					<label for="description"> Description:</label>
@@ -79,61 +80,25 @@
 			</div>
 			<div data-role="content" >
 
-				<ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
-					<li data-role="list-divider">A</li>
-					<li><a href="#">Adam Kinkaid</a></li>
-					<li><a href="#">Alex Wickerham</a></li>
-					<li><a href="#">Avery Johnson</a></li>
-					<li data-role="list-divider">B</li>
-					<li><a href="#">Bob Cabot</a></li>
-					<li data-role="list-divider">C</li>
-					<li><a href="#">Caleb Booth</a></li>
-					<li><a href="#">Christopher Adams</a></li>
-					<li><a href="#">Culver James</a></li>
-					<li data-role="list-divider">D</li>
-					<li><a href="#">David Walsh</a></li>
-					<li><a href="#">Drake Alfred</a></li>
-					<li data-role="list-divider">E</li>
-					<li><a href="#">Elizabeth Bacon</a></li>
-					<li><a href="#">Emery Parker</a></li>
-					<li><a href="#">Enid Voldon</a></li>
-					<li data-role="list-divider">F</li>
-					<li><a href="#">Francis Wall</a></li>
-					<li data-role="list-divider">G</li>
-					<li><a href="#">Graham Smith</a></li>
-					<li><a href="#">Greta Peete</a></li>
-					<li data-role="list-divider">H</li>
-					<li><a href="#">Harvey Walls</a></li>
-					<li data-role="list-divider">M</li>
-					<li><a href="#">Mike Farnsworth</a></li>
-					<li><a href="#">Murray Vanderbuilt</a></li>
-					<li data-role="list-divider">N</li>
-					<li><a href="#">Nathan Williams</a></li>
-					<li data-role="list-divider">P</li>
-					<li><a href="#">Paul Baker</a></li>
-					<li><a href="#">Pete Mason</a></li>
-					<li data-role="list-divider">R</li>
-					<li><a href="#">Rod Tarker</a></li>
-					<li data-role="list-divider">S</li>
-					<li><a href="#">Sawyer Wakefield</a></li>
+        <ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
+          <li class="suggestionsDivider" data-role="list-divider">A</li>
+          <li class="suggestionsNeutral" data-theme="c" ><a href="">boom</a></li>
+					<li class="suggestionsSel" data-theme="g" ><a href="">boom</a></li>
+					<li class="suggestionsNeutral-last" data-theme="c" ><a href="#">boom</a></li>
+					<li class="suggestionsSel-last" data-theme="g" ><a href="#">boom</a></li>
         </ul>
+        <ul id="suggestions2"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
+          <li class="suggestionsDivider" data-role="list-divider">A</li>
+					<li class="suggestionsNeutral-last" data-theme="c" ><a href="#">boom</a></li>
+        </ul>
+
         <span class="ui-title">&nbsp;</span>
-        <script>
-          $("#suggestions li").click(function() {
-            var classStash = $(this).attr("class-stash");
-            $(this).attr({ "class-stash" : $(this).attr("class") });
-            if ($(this).attr("data-theme") === "c") {
-              $(this).attr({ "data-theme" : "g" });
-            } else {
-              $(this).attr({ "data-theme" : "c" });
-            }
-            if (classStash != "") {
-              $(this).attr({ "class" : classStash });
-            }
-            return false;
+        <script type="text/javascript">
+          $("#invite").bind("pageinit", function(event, data) {
+            console.log("before page load")
+            getContacts(0);
           });
         </script>
-
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">

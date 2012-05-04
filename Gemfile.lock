@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    json (1.6.6)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
@@ -20,6 +21,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  json
   sequel
   sinatra
   sqlite3-ruby

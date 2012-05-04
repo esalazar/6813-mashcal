@@ -1,6 +1,6 @@
 
-$(document).ready(function (){	
-		
+$(document).ready(function (){
+
 	var availableTags = ["Bob", "Kate", "Tito", "Josh"];
 	$( ".selector" ).bind( "pageview", function(event, ui) {
 		alert("");
@@ -12,5 +12,5 @@ $(document).ready(function (){
 		//select: function(event, ui) { alert("");}
 	});
 	*/
-	
+
 });
