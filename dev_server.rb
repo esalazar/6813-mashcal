@@ -4,7 +4,7 @@ require "sinatra"
 require "json"
 require "sequel"
 
-DB = sequel.connect("sqlite://mashcal.db")
+DB = Sequel.connect("sqlite://mashcal.db")
 
 set :public_folder, File.join(File.dirname(__FILE__), "src")
 set :views, File.join(File.dirname(__FILE__), "src")
