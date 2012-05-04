@@ -2,9 +2,9 @@ Sequel.migration do
   up do
 		create_table :user do
 			primary_key :id
-			String :username :unique => true, :null => false
-			String :password :null => false
-			String :display_name => false
+			String :username, :unique => true, :null => false
+			String :password, :null => false
+			String :display_name, :null => false
 		end
 
 		create_table :contacts do
@@ -14,7 +14,7 @@ Sequel.migration do
 
 		create_table :event do
 			primary_key :id
-			String :title :null => false
+			String :title, :null => false
 			String :description
 		end
 
@@ -22,13 +22,13 @@ Sequel.migration do
 			Integer :event_id
 			Integer :allotted_time_id
 		end
-		
+
 		create_table :allotted_time do
 			primary_key :id
 			Integer :start_time
 			Integer :end_time
 		end
-		
+
 		create_table :scheduled do
 			Integer :event_id
 			Integer :allotted_time_id
@@ -37,12 +37,12 @@ Sequel.migration do
 		create_table :response do
 			primary_key :id
 			Integer :event_id
-			Integer: user_id
+			Integer :user_id
 		end
-		
+
 		create_table :response_time do
 			Integer :responses_id
-			Integer: allotted_id
+			Integer :allotted_id
 		end
 	end
 	down do
@@ -56,3 +56,4 @@ Sequel.migration do
 		drop_table(:response_time)
 	end
 end
+
