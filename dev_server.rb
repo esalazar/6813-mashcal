@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "sinatra"
+require 'sinatra/flash'
 require "json"
 require "sequel"
 
@@ -14,7 +15,11 @@ set :port, 6813
 enable :sessions
 
 get "/" do
-  send_file("src/index.html")
+  if session[:user]
+    send_file("src/index.html")
+  else
+    erb :login
+  end
 end
 
 get "/invite.html" do
@@ -41,10 +46,10 @@ post "/ajax/login" do
   user = DB[:user].filter(:username => params[:username]).first
   if !user.nil? && user[:password] == params[:password]
     session[:user] = user
-    return { :success => true, :userid => user[:id] }.to_json
   else
-    return { :success => false, :userid => nil }.to_json
+    flash[:error] = "Invalid username or password"
   end
+  redirect "/"
 end
 
 post "/ajax/logout" do
