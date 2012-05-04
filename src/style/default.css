@@ -18,6 +18,9 @@
 	text-align: left;
 }
 
+.warning {
+	color: red;
+}
 
 /* additional stylings for jquery */
 .ui-btn-up-f, .ui-btn-hover-f, .ui-btn-down-f {
