@@ -31,12 +31,10 @@ var selectorize = function(id, mode) {
       }
       span += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
     }
-    span += "<div style='clear:both'></div></div>";
+    span += "</div></div>";
     grid += "<td class='all-of-the-times'><div class='time-window'>" +
             span + "</div></td></tr>";
   }
-  span += "</td>"
-  grid = grid.replace("SUBSTITUTE", span)
   grid += "</table>";
   $(id).append(grid);
 
@@ -122,50 +120,8 @@ var leftmost = null;
 var SELECTOR_WIDTH = 3;
 var currentHour = Math.min(23 + 1 - SELECTOR_WIDTH, (new Date()).getHours());
 
-/**
-* scrolls the selector to the left or right by one hour
-*
-* @param direction negative values for left scrolling; positive
-* values for right scrolling
-*/
-var scrollSelector = function(direction) {
-  var oldCurrentHour = currentHour;
-  if (direction < 0) {
-    currentHour = Math.max(0, currentHour - 1);
-  } else {
-    currentHour = Math.min(23 + 1 - SELECTOR_WIDTH, currentHour + 1);
-  }
-  // short circuit if nothing has changed
-  if (oldCurrentHour === currentHour) return;
-
-  // more indicators
-  if (currentHour === 23 + 1 - SELECTOR_WIDTH) {
-    $(".sel-more-right").css({ display : "none" });
-  } else {
-    $(".sel-more-right").css({ display : "block" });
-  }
-
-  if (currentHour === 0) {
-    $(".sel-more-left").css({ display : "none" });
-  } else {
-    $(".sel-more-left").css({ display : "block" });
-  }
-
-  if (direction < 0) {
-    $(".selector-hour-" + (currentHour + SELECTOR_WIDTH)).animate({ opacity : 0 }, "fast",
-      function() {
-        $(this).css({ display : "none" });
-        $(".selector-hour-" + currentHour).css({ display : "block" }).animate({ opacity : 1 }, "fast");
-      });
-
-  } else {
-    $(".selector-hour-" + oldCurrentHour).animate({ opacity : 0 }, "fast",
-      function() {
-        $(this).css({ display : "none" });
-        $(".selector-hour-" + (oldCurrentHour + SELECTOR_WIDTH)).css(
-        { display : "block" }).animate({ opacity : 1 }, "fast");
-      });
-  }
+var clearSelector = function(id) {
+  $( id + " .selector-hour").removeClass("selector-selected");
 }
 
 var schedule_random_times = function(id) {
