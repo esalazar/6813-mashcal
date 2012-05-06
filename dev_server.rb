@@ -55,10 +55,11 @@ get "/incoming_events.html" do
 	@new_events = Hash.new { Array.new }
 	@rsvpd_events = Hash.new { Array.new }
 	DB[:invite].filter(:user_id => session[:user][:id]).each do |i|
+    event = DB[:event].filter(:id => i[:event_id]).first
 		if DB[:response].filter(:invite_id => i[:id]).count == 0
-			new_events << i
+			new_events << event
 		else
-			rsvpd_events << i
+			rsvpd_events << event
 		end
 	end
 	@new_events = new_events
@@ -110,9 +111,10 @@ post "/ajax/add_times" do
 end
 
 post "/ajax/invite" do
+  p params[:invitees]
   params[:invitees].split(",").each do |time|
     user = DB[:user].filter(:display_name => time).first
-    DB[:initve].insert(:event_id => params[:event_id].to_i,
+    DB[:invite].insert(:event_id => params[:event_id].to_i,
                       :user_id => user[:id])
   end
   redirect "/"

@@ -24,9 +24,9 @@
 		  </div>
 		  <div data-role="content" >
 
-        <form id="form" action="/ajax/invite" method="post">
+        <form id="inviteform" action="/ajax/invite" method="post">
           <input type="hidden" name="event_id" value="<%= @event %>"/>
-          <input type="hidden" name="invitees" value=""/>
+          <input id="invitees" type="hidden" name="invitees" value=""/>
         </form>
 			<ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
 			  <% for @letter in @contact_letters %>
@@ -47,7 +47,7 @@
 		  <div data-role="footer">
 			<span class="ui-title">
 			  <a href="/schedule.html" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
-			  <a href="#" onclick="invitize('#suggestions');$('#form').submit();return false;" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
+			  <a href="#" onclick="invitize('#suggestions');$('#inviteform').submit();return false;" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
 			</span>
 		  </div>
 		</div>

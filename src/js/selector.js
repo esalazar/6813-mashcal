@@ -164,7 +164,7 @@ var formize = function(id) {
 
 var invitize = function(id) {
   var str = "";
-  $(id + " ul[data-theme='g']").each(function() {
+  $(id + " li[data-theme='g']").each(function() {
     if (!$(this).hasClass("invite-hidden")) {
       str += $(this).attr("data-contact");
       str += ","
