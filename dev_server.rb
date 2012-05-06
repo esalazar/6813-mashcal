@@ -16,7 +16,7 @@ enable :sessions
 
 get "/" do
   if session[:user]
-    send_file("src/index.html")
+    erb :index
   else
     erb :login
   end
