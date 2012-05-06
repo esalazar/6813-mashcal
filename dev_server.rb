@@ -59,3 +59,9 @@ end
 post "/ajax/logout" do
   session[:user] = nil
 end
+
+post "/ajax/create_event" do
+  DB[:event].insert(:title => params[:title],
+                    :description => params[:description])
+  redirect "/schedule.html"
+end

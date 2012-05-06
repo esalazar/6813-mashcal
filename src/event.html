@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>MashCal</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="style/default.css" />
+		<link rel="stylesheet" href="style/selector.css" />
+
+		<!-- js frameworks -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+		<!-- our code -->
+		<script type="text/javascript" src="js/selector.js"></script>
+		<script type="text/javascript" src="js/display-contacts.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="index">
+			<div data-role="header">
+				<a href="#index" data-icon="home" data-theme="b">Home</a>
+				<h1>Create</h1>
+			</div>
+      <div data-role="content" >
+        <form id="form" action="/ajax/create_event" method="post" data-ajax="false">
+				  <div data-role="fireldcontain" class="ui-hide-label">
+					  <label for="title"> Title:</label>
+					  <input type="text" id="title" name="title" placeholder="Title" />
+				  </div>
+				  <div data-role="fieldcontain" class="ui-hide-label">
+					  <label for="description"> Description:</label>
+					  <textarea id="description" name="description" placeholder="Description"></textarea>
+				  </div>
+        </form>
+			</div>
+			<div data-role="footer">
+				<span class="ui-title">
+					<a href="#" onclick="$('#form').submit()" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Schedule</a>
+				</span>
+			</div>
+		</div>
+	</body>
+</html>
+

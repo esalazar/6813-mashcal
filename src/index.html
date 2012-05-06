@@ -23,55 +23,16 @@
 			</div>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-filter="false">
-					<li><a href="#create">Create an event</a></li>
+					<li><a href="event.html">Create an event</a></li>
 					<li><a href="#my_events">Manage created events <span class="ui-li-count">22</span></a></li>
 					<li><a href="#incoming_events">View incoming events<span class="ui-li-count">2</span></a></li>
 					<li><a href="#about">About</a></li>
 				</ul>
 			</div>
 		</div>
-		<div data-role="page" id="create">
-			<div data-role="header">
-				<a href="#index" data-icon="home" data-theme="b">Home</a>
-				<h1>Create</h1>
-			</div>
-			<div data-role="content" >
-				<div data-role="fieldcontain" class="ui-hide-label">
-					<label for="title_input"> Title:</label>
-					<input type="text" id="title_input" placeholder="Title" />
-				</div>
-				<div data-role="fieldcontain" class="ui-hide-label">
-					<label for="description"> Description:</label>
-					<textarea id="description" placeholder="Description"></textarea>
-
-				</div>
-			</div>
-			<div data-role="footer">
-				<span class="ui-title">
-					<a href="#schedule" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Schedule</a>
-				</span>
-			</div>
-		</div>
-		<div data-role="page" id="schedule">
-			<div data-role="header">
-				<a href="#index" data-icon="home" data-theme="b">Home</a>
-				<h1>Schedule</h1>
-			</div>
-			<div data-role="content">
-        <div id="selector"></div>
-        <script>selectorize("#selector", true);</script>
-        <a data-role="button" href="#" onclick="clearSelector('#selector'); return false;">Clear all selected times</a>
-			</div>
-			<div data-role="footer">
-				<span class="ui-title">
-					<a href="#create" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Create</a>
-					<a href="#" onclick="goToInvite();" class="ui-btn-right" data-role="button" data-theme="b" data-icon="arrow-r" data-inline="true" data-iconpos="right">Invite</a>
-				</span>
-			</div>
-		</div>
 		<div data-role="page" id="my_events">
 			<div data-role="header">
-				<a href="#index" data-icon="home" data-theme="b">Home</a>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
 				<h1>My Events</h1>
 			 </div>
 			<div data-role="content">
@@ -101,7 +62,7 @@
 		</div>
 		<div data-role="page" id="incoming_events">
 			<div data-role="header">
-				<a href="#index" data-icon="home" data-theme="b">Home</a>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
 				<h1>Incoming Events</h1>
 			 </div>
 			<div data-role="content">
@@ -116,7 +77,7 @@
 		</div>
 		<div data-role="page" id="about">
 			<div data-role="header">
-				<a href="#index" data-icon="home" data-theme="b">Home</a>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
 				<h1>About</h1>
 			 </div>
 			<div data-role="content">
@@ -130,7 +91,7 @@
 		</div>
 		<div data-role="page" id="respond_selector">
 				<div data-role="header">
-					<a href="#index" data-icon="home" data-theme="b">Home</a>
+					<a href="index.html" data-icon="home" data-theme="b">Home</a>
 					<h1>Lunch with Jack</h1>
 		  </div>
 		  <div data-role="content">
@@ -142,7 +103,7 @@
 				</div>
 				<div data-role="footer">
 					<span class="ui-title">
-			  <a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">RSVP</a>
+			  <a href="index.html" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">RSVP</a>
 			</span>
 				</div>
 			</div>
