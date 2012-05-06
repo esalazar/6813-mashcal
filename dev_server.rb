@@ -109,3 +109,12 @@ post "/ajax/add_times" do
   redirect "/invite.html?event=" + params[:event_id]
 end
 
+post "/ajax/invite" do
+  params[:invitees].split(",").each do |time|
+    user = DB[:user].filter(:display_name => time).first
+    DB[:initve].insert(:event_id => params[:event_id].to_i,
+                      :user_id => user[:id])
+  end
+  redirect "/"
+end
+
