@@ -38,6 +38,16 @@ get "/invite.html" do
   erb :invite
 end
 
+get "/my_events.html" do
+	events = []
+	@events = Hash.new { Array.new }
+	DB[:event].filter(:creator_id => session[:user][:id]).each do |e|
+		events << e
+	end
+	@events = events
+	erb :my_events
+end
+
 get "/ajax/contacts/:id" do
   contacts = {}
   contacts[:contacts] = ["Bill Smith", "Bob Jones", "Billy Awesome",
