@@ -85,14 +85,6 @@ get "/incoming_events.html" do
 	erb :incoming_events
 end
 
-get "/ajax/contacts/:id" do
-  contacts = {}
-  contacts[:contacts] = ["Bill Smith", "Bob Jones", "Billy Awesome",
-                         "Kate Upton", "Rihanna", "Dick Clark (RIP)",
-                         "Jennifer Anniston", "Katy Perry", "Beyonce"]
-  contacts.to_json
-end
-
 post "/ajax/login" do
   user = DB[:user].filter(:username => params[:username]).first
   if !user.nil? && user[:password] == params[:password]
@@ -103,11 +95,13 @@ post "/ajax/login" do
   redirect "/"
 end
 
-post "/ajax/logout" do
+get "/ajax/logout" do
   session[:user] = nil
+  redirect "/"
 end
 
-post "/ajax/create_event" do
+# expects to be referred from event.html
+post "/schedule.html" do
   DB[:event].insert(:title => params[:title],
                     :description => params[:description],
                     :creator_id => session[:user][:id])
@@ -116,7 +110,8 @@ post "/ajax/create_event" do
   erb :schedule
 end
 
-post "/ajax/add_times" do
+# expects to be referred from schedule.html
+post "/invite.html" do
   params[:times].split(",").each do |time|
     DB[:allotted_time].insert(:start_time => time.to_i,
                              :end_time => time.to_i + 1000 * 60 * 60)
@@ -125,7 +120,21 @@ post "/ajax/add_times" do
     DB[:event_to_time].insert(:event_id => params[:event_id].to_i,
                               :allotted_time_id => alloted_time[:id])
   end
-  redirect "/invite.html?event=" + params[:event_id]
+  params[:event] = params[:event_id]
+  contacts = []
+  DB[:contacts].filter(:from_id => session[:user][:id]).each do |c|
+    user = DB[:user].filter(:id => c[:to_id]).first
+    contacts << user
+  end
+  contacts.sort {|a,b| a[:display_name] <=> b[:display_name] }
+  @contacts = Hash.new { Array.new }
+  contacts.each do |c|
+    first_letter = c[:display_name][0]
+    @contacts[first_letter] = @contacts[first_letter] << c[:display_name]
+  end
+  @contact_letters = @contacts.keys.sort
+  @event = params[:event]
+  erb :invite
 end
 
 post "/ajax/invite" do
@@ -135,6 +144,6 @@ post "/ajax/invite" do
     DB[:invite].insert(:event_id => params[:event_id].to_i,
                       :user_id => user[:id])
   end
-  redirect "/"
+  "<html><body><script>window.location='/index.html';</script></body></html>"
 end
 
