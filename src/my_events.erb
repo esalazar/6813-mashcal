@@ -25,10 +25,10 @@
 			<div data-role="content">
 				<ul data-role="listview" data-theme="c">
 					<% for @event in @events %>
-					<li><a href="#respond_selector">
-						<h3><%= @event.title %></h3>
-						<p><strong><%= session.user.display_name %></strong></p>
-						<p><%= @event.description %></p>
+					<li><a href="/ajax/respond?event=<%= @event[:id] %>">
+						<h3><%= @event[:title] %></h3>
+						<p><strong><%= session[:user][:display_name] %></strong></p>
+						<p><%= @event[:description] %></p>
 					</a></li>
 					<% end %>
 				</ul>
