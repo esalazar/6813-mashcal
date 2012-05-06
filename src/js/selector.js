@@ -14,6 +14,7 @@ var selectorize = function(id, mode) {
   var date = new Date();
   date.setDate(date.getDate() - 1);
   for (var i=0; i < 7; i++) {
+    date.setDate(date.getDate() + 1);
     span = "";
     date.setDate(date.getDate() + 1);
     grid += "<tr class='selector-day selector-day-" + i + "'>"
@@ -22,6 +23,7 @@ var selectorize = function(id, mode) {
       " " + date.getDate() + "</div>";
     grid += "</td>";
     for (var h=0; h < 24; h++) {
+      date.setHours(h,0,0,0);
       var time = h % 12;
       if (time === 0) time = 12;
       if (h < 12) {
@@ -29,7 +31,7 @@ var selectorize = function(id, mode) {
       } else {
         time = "" + time + " PM";
       }
-      span += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
+      span += "<div date-ms='"+date.getTime()+"' class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
     }
     span += "</div></div>";
     grid += "<td class='all-of-the-times'><div class='time-window'>" +
@@ -151,4 +153,13 @@ var monthToNameMap = {
   10 : "nov",
   11 : "dec"
 };
+
+var formize = function(id) {
+  var str = "";
+  $(id + " .selector-selected").each(function() {
+    str += $(this).attr("date-ms");
+    str += ",";
+  })
+  $("#times").val(str);
+}
 

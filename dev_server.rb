@@ -35,6 +35,7 @@ get "/invite.html" do
     @contacts[first_letter] = @contacts[first_letter] << c[:display_name]
   end
   @contact_letters = @contacts.keys.sort
+  @event = params[:event]
   erb :invite
 end
 
@@ -77,5 +78,20 @@ end
 post "/ajax/create_event" do
   DB[:event].insert(:title => params[:title],
                     :description => params[:description])
-  redirect "/schedule.html"
+  @event = DB[:event].filter(:title => params[:title],
+                    :description => params[:description]).first
+  erb :schedule
 end
+
+post "/ajax/add_times" do
+  params[:times].split(",").each do |time|
+    DB[:alloted_time].insert(:start_time => time.to_i,
+                             :end_time => time.to_i + 1000 * 60 * 60)
+    alloted_time = DB[:alloted_time].filter(:start_time => time.to_i,
+                             :end_time => time.to_i + 1000 * 60 * 60)
+    DB[:event_to_time].insert(:event_id => params[:event_id].to_i,
+                              :alloted_time_id => alloted_time[:id])
+  end
+  redirect "/invite.html?event=" + params[:event]
+end
+
