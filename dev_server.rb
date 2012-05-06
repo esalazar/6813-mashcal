@@ -48,6 +48,10 @@ get "/my_events.html" do
 	erb :my_events
 end
 
+get "/incoming_events.html" do
+	erb :incoming_events
+end
+
 get "/ajax/contacts/:id" do
   contacts = {}
   contacts[:contacts] = ["Bill Smith", "Bob Jones", "Billy Awesome",
