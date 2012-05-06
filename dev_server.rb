@@ -77,7 +77,8 @@ end
 
 post "/ajax/create_event" do
   DB[:event].insert(:title => params[:title],
-                    :description => params[:description])
+                    :description => params[:description],
+                    :creator_id => session[:user][:id])
   @event = DB[:event].filter(:title => params[:title],
                     :description => params[:description]).first
   erb :schedule
