@@ -20,19 +20,20 @@
 		<div data-role="page" id="index">
 			<div data-role="header">
 				<h1>MashCal</h1>
+				<a href="/ajax/logout" class="ui-btn-right" data-icon="delete" data-theme="b">Logout</a>
 			</div>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-filter="false">
-					<li><a href="event.html">Create an event</a></li>
-					<li><a href="my_events.html">Manage created events</a></li>
-					<li><a href="incoming_events.html">View incoming events<span class="ui-li-count"><%= @new_events.count %></span></a></li>
+					<li><a href="/event.html">Create an event</a></li>
+					<li><a href="/my_events.html">Manage created events</a></li>
+					<li><a href="/incoming_events.html">View incoming events<span class="ui-li-count"><%= @new_events.count %></span></a></li>
 					<li><a href="#about">About</a></li>
 				</ul>
 			</div>
 		</div>
 		<div data-role="page" id="about">
 			<div data-role="header">
-				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+				<a href="/index.html" data-icon="home" data-theme="b">Home</a>
 				<h1>About</h1>
 			 </div>
 			<div data-role="content">
@@ -46,7 +47,7 @@
 		</div>
 		<div data-role="page" id="respond_selector">
 				<div data-role="header">
-					<a href="index.html" data-icon="home" data-theme="b">Home</a>
+					<a href="/index.html" data-icon="home" data-theme="b">Home</a>
 					<h1>Lunch with Jack</h1>
 		  </div>
 		  <div data-role="content">
@@ -58,7 +59,7 @@
 				</div>
 				<div data-role="footer">
 					<span class="ui-title">
-			  <a href="index.html" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">RSVP</a>
+			  <a href="/index.html" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">RSVP</a>
 			</span>
 				</div>
 			</div>
