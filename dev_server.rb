@@ -23,14 +23,18 @@ get "/" do
 end
 
 get "/invite.html" do
-  @contacts = {}
-  @contacts["B"] = ["Bill Smith", "Bob Jones", "Billy Awesome", "Beyonce"]
-  @contacts["D"] = ["Dick Clark (RIP)"]
-  @contacts["K"] = ["Kate Upton", "Katy Perry"]
-  @contacts["J"] = ["Jennifer Anniston"]
-  @contacts["R"] = ["Rihanna"]
-  @contacts.each_pair { |k,v| @contacts[k] = v.sort }
-  @contact_letters = ["B", "D", "J", "K", "R"].sort
+  contacts = []
+  DB[:contacts].filter(:from_id => session[:user][:id]).each do |c|
+    user = DB[:user].filter(:id => c[:to_id]).first
+    contacts << user
+  end
+  contacts.sort {|a,b| a[:display_name] <=> b[:display_name] }
+  @contacts = Hash.new { Array.new }
+  contacts.each do |c|
+    first_letter = c[:display_name][0]
+    @contacts[first_letter] = @contacts[first_letter] << c[:display_name]
+  end
+  @contact_letters = @contacts.keys.sort
   erb :invite
 end
 
