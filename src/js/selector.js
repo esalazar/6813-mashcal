@@ -16,8 +16,8 @@ var selectorize = function(id, mode) {
   for (var i=0; i < 7; i++) {
     span = "";
     date.setDate(date.getDate() + 1);
-    grid += "<tr>"
-    grid += "<td><div class='selector-day selector-day-" + i + "'>";
+    grid += "<tr class='selector-day selector-day-" + i + "'>"
+    grid += "<td><div>";
     grid += "<div class='selector-day-descriptor'>" + monthToNameMap[date.getMonth()] +
       " " + date.getDate() + "</div>";
     grid += "</td>";
@@ -42,7 +42,7 @@ var selectorize = function(id, mode) {
   //$(".time-window").css({ "width" : "80%" });
 
   if (mode) {
-    $(".selector-hour").bind("tap", function(e) {
+    $(id + " .selector-hour").bind("tap", function(e) {
       if (dragging && prevX !== null) {
         return;
       }
@@ -53,7 +53,7 @@ var selectorize = function(id, mode) {
       }
     });
   } else {
-    $(".selector-hour").bind("tap", function(e) {
+    $(id + " .selector-hour").bind("tap", function(e) {
       if (dragging && prevX !== null) {
         return;
       }
@@ -73,7 +73,7 @@ var selectorize = function(id, mode) {
   $(id).bind("vmousedown", function(e) {
     dragging = true;
     if (leftmost === null) {
-      leftmost = $(".selector-hour-0").offset().left
+      leftmost = $(id + " .selector-hour-0").offset().left
     }
   });
   $(id).bind("vmousemove", function(e) {
@@ -81,27 +81,27 @@ var selectorize = function(id, mode) {
     if (prevX === null) {
       prevX = e.screenX;
     } else {
-      var margin = $(".time-window").css("margin-left");
+      var margin = $(id + " .time-window").css("margin-left");
       margin = parseInt(margin.replace("px", ""));
       var newmargin = margin + (e.screenX - prevX);
       if (newmargin > 0) {
         newmargin = 0;
-      } else if (newmargin < (-$(".time-window").width() + 0.7 * $(window).width())) {
-        newmargin = -$(".time-window").width() + 0.7 * $(window).width();
+      } else if (newmargin < (-$(id + " .time-window").width() + 0.7 * $(window).width())) {
+        newmargin = -$(id + " .time-window").width() + 0.7 * $(window).width();
       }
-      $(".time-window").css({ "margin-left" : newmargin + "px" });
+      $(id + " .time-window").css({ "margin-left" : newmargin + "px" });
       prevX = e.screenX;
     }
 
     for (var i=0; i < 24; i++) {
-      var pos = $(".selector-hour-" + i).offset();
+      var pos = $(id + " .selector-hour-" + i).offset();
       if (pos.left < leftmost) {
-        $(".selector-hour-" + i).css({ "opacity" : 0 });
-      } else if (pos.left < leftmost + $(".selector-hour").width() && i != 0) {
-         var frac = (pos.left - leftmost) / $(".selector-hour").width();
-        $(".selector-hour-" + i).css({ "opacity" : frac });
+        $(id + " .selector-hour-" + i).css({ "opacity" : 0 });
+      } else if (pos.left < leftmost + $(id + " .selector-hour").width() && i != 0) {
+         var frac = (pos.left - leftmost) / $(id + " .selector-hour").width();
+        $(id + " .selector-hour-" + i).css({ "opacity" : frac });
       } else {
-        $(".selector-hour-" + i).css({ "opacity" : 1 });
+        $(id + " .selector-hour-" + i).css({ "opacity" : 1 });
       }
     }
   });
@@ -126,6 +126,7 @@ var clearSelector = function(id) {
 
 var schedule_random_times = function(id) {
   var sel = $(id);
+  console.log(sel);
   for (var h=currentHour; h < currentHour + 4; h++) {
     sel.find(".selector-day-0 .selector-hour-" + h).addClass("selector-respond-selected");
   }
