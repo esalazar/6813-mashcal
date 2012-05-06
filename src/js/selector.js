@@ -1,24 +1,26 @@
 /**
- * This function creates a 7 day by 24 hour grid
- * starting from today
- *
- * @param id an object that can be passed to the dollar
- * function to specify the element to selectorize
- *
- * @param mode true if this is for general input, false if
- * this is for responding to preselected times
- */
+* This function creates a 7 day by 24 hour grid
+* starting from today
+*
+* @param id an object that can be passed to the dollar
+* function to specify the element to selectorize
+*
+* @param mode true if this is for general input, false if
+* this is for responding to preselected times
+*/
 var selectorize = function(id, mode) {
-  var grid = "";
-  var polarity = "sel-dark";
+  var grid = "<table>";
+  var polarity = "sel-light";
   var date = new Date();
   date.setDate(date.getDate() - 1);
   for (var i=0; i < 7; i++) {
+    span = "";
     date.setDate(date.getDate() + 1);
-    grid += "<div class='selector-day selector-day-" + i + "'>";
+    grid += "<tr>"
+    grid += "<td><div class='selector-day selector-day-" + i + "'>";
     grid += "<div class='selector-day-descriptor'>" + monthToNameMap[date.getMonth()] +
-            " " + date.getDate() + "</div>";
-    grid += "<div class='sel-more-left'>...</div>";
+      " " + date.getDate() + "</div>";
+    grid += "</td>";
     for (var h=0; h < 24; h++) {
       var time = h % 12;
       if (time === 0) time = 12;
@@ -27,43 +29,25 @@ var selectorize = function(id, mode) {
       } else {
         time = "" + time + " PM";
       }
-      grid += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
-      polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
+      span += "<div class='selector-hour selector-hour-" + h + " " + polarity + "'>" + time + "</div>";
     }
-    grid += "<div class='sel-more-right'>...</div><div style='clear:both'></div>";
-    grid += "</div>";
-    polarity = (polarity === "sel-dark" ? "sel-light" : "sel-dark");
+    span += "<div style='clear:both'></div></div>";
+    grid += "<td class='all-of-the-times'><div class='time-window'>" +
+            span + "</div></td></tr>";
   }
+  span += "</td>"
+  grid = grid.replace("SUBSTITUTE", span)
+  grid += "</table>";
   $(id).append(grid);
 
   // time for the dynamic css bits
-  // hide everything
-  for (var h=0; h < 24; h++) {
-    $(".selector-hour-" + h).css({ display : "none", opacity : 0 });
-  }
-  var selWidth = (100 / (1.5 * SELECTOR_WIDTH));
-  $(".selector-hour").css({ width : selWidth + "%" });
-  $(id).css({ height : "100%" });
-  // more indicators
-  if (currentHour === 23 + 1 - SELECTOR_WIDTH) {
-    $(".sel-more-right").css({ display : "none" });
-  } else {
-    $(".sel-more-right").css({ display : "block" });
-  }
-
-  if (currentHour === 0) {
-    $(".sel-more-left").css({ display : "none" });
-  } else {
-    $(".sel-more-left").css({ display : "block" });
-  }
-
-  // init the display
-  for (var h=currentHour; h < currentHour + SELECTOR_WIDTH; h++) {
-    $(".selector-hour-" + h).css({ display : "block", opacity : 1 });
-  }
+  //$(".time-window").css({ "width" : "80%" });
 
   if (mode) {
     $(".selector-hour").bind("tap", function(e) {
+      if (dragging && prevX !== null) {
+        return;
+      }
       if ($(this).hasClass("selector-selected")) {
         $(this).removeClass("selector-selected");
       } else {
@@ -72,6 +56,9 @@ var selectorize = function(id, mode) {
     });
   } else {
     $(".selector-hour").bind("tap", function(e) {
+      if (dragging && prevX !== null) {
+        return;
+      }
       if ($(this).hasClass("selector-respond-selected")) {
         if ($(this).hasClass("selector-respond-accept")) {
           $(this).removeClass("selector-respond-accept");
@@ -83,19 +70,64 @@ var selectorize = function(id, mode) {
   }
 
   // swipe events
-  $(id).bind("swipeleft", function(e) { scrollSelector(1); });
-  $(id).bind("swiperight", function(e) { scrollSelector(-1); });
+  //$(id).bind("swipeleft", function(e) { scrollSelector(1); });
+  //$(id).bind("swiperight", function(e) { scrollSelector(-1); });
+  $(id).bind("vmousedown", function(e) {
+    dragging = true;
+    if (leftmost === null) {
+      leftmost = $(".selector-hour-0").offset().left
+    }
+  });
+  $(id).bind("vmousemove", function(e) {
+    if (!dragging) return;
+    if (prevX === null) {
+      prevX = e.screenX;
+    } else {
+      var margin = $(".time-window").css("margin-left");
+      margin = parseInt(margin.replace("px", ""));
+      var newmargin = margin + (e.screenX - prevX);
+      if (newmargin > 0) {
+        newmargin = 0;
+      } else if (newmargin < (-$(".time-window").width() + 0.7 * $(window).width())) {
+        newmargin = -$(".time-window").width() + 0.7 * $(window).width();
+      }
+      $(".time-window").css({ "margin-left" : newmargin + "px" });
+      prevX = e.screenX;
+    }
+
+    for (var i=0; i < 24; i++) {
+      var pos = $(".selector-hour-" + i).offset();
+      if (pos.left < leftmost) {
+        $(".selector-hour-" + i).css({ "opacity" : 0 });
+      } else if (pos.left < leftmost + $(".selector-hour").width() && i != 0) {
+         var frac = (pos.left - leftmost) / $(".selector-hour").width();
+        $(".selector-hour-" + i).css({ "opacity" : frac });
+      } else {
+        $(".selector-hour-" + i).css({ "opacity" : 1 });
+      }
+    }
+  });
+
+  $(id).bind("vmouseup", function(e) {
+    dragging = false;
+    prevX = null;
+  });
 }
+
+var dragging = false;
+var tapfired = false;
+var prevX = null;
+var leftmost = null;
 
 var SELECTOR_WIDTH = 3;
 var currentHour = Math.min(23 + 1 - SELECTOR_WIDTH, (new Date()).getHours());
 
 /**
- * scrolls the selector to the left or right by one hour
- *
- * @param direction negative values for left scrolling; positive
- * values for right scrolling
- */
+* scrolls the selector to the left or right by one hour
+*
+* @param direction negative values for left scrolling; positive
+* values for right scrolling
+*/
 var scrollSelector = function(direction) {
   var oldCurrentHour = currentHour;
   if (direction < 0) {
@@ -131,7 +163,7 @@ var scrollSelector = function(direction) {
       function() {
         $(this).css({ display : "none" });
         $(".selector-hour-" + (oldCurrentHour + SELECTOR_WIDTH)).css(
-          { display : "block" }).animate({ opacity : 1 }, "fast");
+        { display : "block" }).animate({ opacity : 1 }, "fast");
       });
   }
 }

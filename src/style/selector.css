@@ -59,9 +59,11 @@ body, div[data-role="page"], .swipeArea {
 }
 
 .selector-hour {
-  display: none;
-  float: left;
+  display: inline-block;
   height: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-right: 5px;
 }
 
 .selector-day-descriptor {
@@ -73,4 +75,9 @@ body, div[data-role="page"], .swipeArea {
 
 .invite-hidden {
   display: none;
+}
+
+.time-window {
+  overflow: hidden;
+  white-space: nowrap;
 }
