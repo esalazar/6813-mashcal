@@ -16,10 +16,28 @@ enable :sessions
 
 get "/" do
   if session[:user]
-    erb :index
+    redirect "/index.html"
   else
     erb :login
   end
+end
+
+get "/index.html" do
+	new_events = []
+	rsvpd_events = []
+	@new_events = Hash.new { Array.new }
+	@rsvpd_events = Hash.new { Array.new }
+	DB[:invite].filter(:user_id => session[:user][:id]).each do |i|
+    event = DB[:event].filter(:id => i[:event_id]).first
+		if DB[:response].filter(:invite_id => i[:id]).count == 0
+			new_events << event
+		else
+			rsvpd_events << event
+		end
+	end
+	@new_events = new_events
+	@rsvpd_events = rsvpd_events
+	erb :index
 end
 
 get "/invite.html" do
