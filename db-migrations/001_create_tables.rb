@@ -16,6 +16,7 @@ Sequel.migration do
 			primary_key :id
 			String :title, :null => false
 			String :description
+			Integer :creator_id
 		end
 
 		create_table :event_to_time do
@@ -34,14 +35,14 @@ Sequel.migration do
 			Integer :allotted_time_id
 		end
 
-		create_table :response do
+		create_table :invite do
 			primary_key :id
 			Integer :event_id
 			Integer :user_id
 		end
 
-		create_table :response_time do
-			Integer :responses_id
+		create_table :response do
+			Integer :invite_id
 			Integer :allotted_id
 		end
 	end
