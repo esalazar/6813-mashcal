@@ -24,11 +24,22 @@
 			 </div>
 			<div data-role="content">
 				<ul data-role="listview" data-theme="c">
-					<li data-role="list-divider" role="heading">New events<span class="ui-li-count">2</span></li>
-					<li><a href="#respond_selector">Lunch with Jack</a></li>
-					<li><a href="#respond_selector">Bowling practice</a></li>
-					<li data-role="list-divider" role="heading">Current events <span class="ui-li-count">12</span></li>
-					<li><a href="#respond_selector">Sweet startup barnstorming sesh</a></li>
+					<li data-role="list-divider" role="heading">New events<span class="ui-li-count"><%= @new_events.count %></span></li>
+					<% for @event in @new_events %>
+					<li><a href="/ajax/respond?event=<%= @event[:id] %>">
+						<h3><%= @event[:title] %></h3>
+						<p><strong><%= session[:user][:display_name] %></strong></p>
+						<p><%= @event[:description] %></p>
+					</a></li>
+					<% end %>
+					<li data-role="list-divider" role="heading">RSVP'd events <span class="ui-li-count"><%= @rsvpd_events.count %></span></li>
+					<% for @event in @rsvpd_events %>
+					<li><a href="/ajax/respond?event=<%= @event[:id] %>">
+						<h3><%= @event[:title] %></h3>
+						<p><strong><%= session[:user][:display_name] %></strong></p>
+						<p><%= @event[:description] %></p>
+					</a></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>

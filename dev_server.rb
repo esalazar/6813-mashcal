@@ -50,6 +50,19 @@ get "/my_events.html" do
 end
 
 get "/incoming_events.html" do
+	new_events = []
+	rsvpd_events = []
+	@new_events = Hash.new { Array.new }
+	@rsvpd_events = Hash.new { Array.new }
+	DB[:invite].filter(:user_id => session[:user][:id]).each do |i|
+		if DB[:response].filter(:invite_id => i[:id]).count == 0
+			new_events << i
+		else
+			rsvpd_events << i
+		end
+	end
+	@new_events = new_events
+	@rsvpd_events = rsvpd_events
 	erb :incoming_events
 end
 
