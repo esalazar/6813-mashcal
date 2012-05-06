@@ -1,5 +1,5 @@
 .selector-selected {
-  background-color: #396B9E !important;
+  background-color: green !important /*#396B9E !important*/;
   color: #CCC;
   text-shadow: 0 1px 0 #333;
   border-color: #333 !important;
