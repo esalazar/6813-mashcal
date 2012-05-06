@@ -128,7 +128,6 @@ var clearSelector = function(id) {
 
 var schedule_random_times = function(id) {
   var sel = $(id);
-  console.log(sel);
   for (var h=currentHour; h < currentHour + 4; h++) {
     sel.find(".selector-day-0 .selector-hour-" + h).addClass("selector-respond-selected");
   }
@@ -161,5 +160,16 @@ var formize = function(id) {
     str += ",";
   })
   $("#times").val(str);
+}
+
+var invitize = function(id) {
+  var str = "";
+  $(id + " ul[data-theme='g']").each(function() {
+    if (!$(this).hasClass("invite-hidden")) {
+      str += $(this).attr("data-contact");
+      str += ","
+    }
+  });
+  $("#invitees").val(str);
 }
 

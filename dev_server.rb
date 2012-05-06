@@ -85,13 +85,13 @@ end
 
 post "/ajax/add_times" do
   params[:times].split(",").each do |time|
-    DB[:alloted_time].insert(:start_time => time.to_i,
+    DB[:allotted_time].insert(:start_time => time.to_i,
                              :end_time => time.to_i + 1000 * 60 * 60)
-    alloted_time = DB[:alloted_time].filter(:start_time => time.to_i,
-                             :end_time => time.to_i + 1000 * 60 * 60)
+    alloted_time = DB[:allotted_time].filter(:start_time => time.to_i,
+                             :end_time => time.to_i + 1000 * 60 * 60).first
     DB[:event_to_time].insert(:event_id => params[:event_id].to_i,
-                              :alloted_time_id => alloted_time[:id])
+                              :allotted_time_id => alloted_time[:id])
   end
-  redirect "/invite.html?event=" + params[:event]
+  redirect "/invite.html?event=" + params[:event_id]
 end
 

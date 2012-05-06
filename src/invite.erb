@@ -25,7 +25,8 @@
 		  <div data-role="content" >
 
         <form id="form" action="/ajax/invite" method="post">
-          <input type="hidden" name="event" value="<%= @event %>"/>
+          <input type="hidden" name="event_id" value="<%= @event %>"/>
+          <input type="hidden" name="invitees" value=""/>
         </form>
 			<ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
 			  <% for @letter in @contact_letters %>
@@ -40,14 +41,13 @@
 				<% end %>
 			  <% end %>
 			</ul>
-			<script type="text/javascript" src="js/display-contacts.js"></script>
 			<script>getContacts(); $("#invite").bind("pageinit", function() { $("#suggestions .ui-icon").remove(); })</script>
 			<span class="ui-title">&nbsp;</span>
 		  </div>
 		  <div data-role="footer">
 			<span class="ui-title">
 			  <a href="#schedule" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
-			  <a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
+			  <a href="#" onclick="invitize('#suggestions');$('#form').submit();return false;" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
 			</span>
 		  </div>
 		</div>
