@@ -1,31 +1,52 @@
-<div data-role="page" id="invite">
-  <div data-role="header">
-    <a href="#index" data-icon="home" data-theme="b">Home</a>
-    <h1>Invite</h1>
-  </div>
-  <div data-role="content" >
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>MashCal</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="style/default.css" />
+		<link rel="stylesheet" href="style/selector.css" />
 
-    <ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
-      <% for @letter in @contact_letters %>
-        <li class="suggestionsDivider" data-role="list-divider"><%= @letter %></li>
-        <% for @contact in @contacts[@letter] %>
-          <li class="suggestionsNeutral" data-theme="c" data-contact="<%= @contact %>">
-            <a href="#"><%= @contact %></a>
-          </li>
-          <li class="suggestionsSel invite-hidden" data-theme="g" data-contact="<%= @contact %>">
-            <a href="#"><%= @contact %></a>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-    <script type="text/javascript" src="js/display-contacts.js"></script>
-    <script>getContacts(); $("#invite").bind("pageinit", function() { $("#suggestions .ui-icon").remove(); })</script>
-    <span class="ui-title">&nbsp;</span>
-  </div>
-  <div data-role="footer">
-    <span class="ui-title">
-      <a href="#schedule" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
-      <a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
-    </span>
-  </div>
-</div>
+		<!-- js frameworks -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+		<!-- our code -->
+		<script type="text/javascript" src="js/selector.js"></script>
+		<script type="text/javascript" src="js/display-contacts.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="invite">
+		  <div data-role="header">
+			<a href="#index" data-icon="home" data-theme="b">Home</a>
+			<h1>Invite</h1>
+		  </div>
+		  <div data-role="content" >
+
+			<ul id="suggestions"  data-filter="true" data-role="listview" data-inset="true" class="ui-listview" data-filter-placeholder="Invite">
+			  <% for @letter in @contact_letters %>
+				<li class="suggestionsDivider" data-role="list-divider"><%= @letter %></li>
+				<% for @contact in @contacts[@letter] %>
+				  <li class="suggestionsNeutral" data-theme="c" data-contact="<%= @contact %>">
+					<a href="#"><%= @contact %></a>
+				  </li>
+				  <li class="suggestionsSel invite-hidden" data-theme="g" data-contact="<%= @contact %>">
+					<a href="#"><%= @contact %></a>
+				  </li>
+				<% end %>
+			  <% end %>
+			</ul>
+			<script type="text/javascript" src="js/display-contacts.js"></script>
+			<script>getContacts(); $("#invite").bind("pageinit", function() { $("#suggestions .ui-icon").remove(); })</script>
+			<span class="ui-title">&nbsp;</span>
+		  </div>
+		  <div data-role="footer">
+			<span class="ui-title">
+			  <a href="#schedule" class="ui-btn-left" data-role="button" data-theme="b" data-icon="arrow-l" data-inline="true">Schedule</a>
+			  <a href="#index" class="ui-btn-right" data-role="button" data-theme="g" data-icon="check" data-inline="true" data-iconpos="right">Done</a>
+			</span>
+		  </div>
+		</div>
+	</body>
+</html>
