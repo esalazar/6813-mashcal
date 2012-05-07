@@ -20,7 +20,7 @@
 		<div data-role="page" id="index">
 			<div data-role="header">
 				<a href="/index.html" data-icon="home" data-theme="b">Home</a>
-				<h1>Schedule</h1>
+        <h1>Respond to <%= @event[:title] %></h1>
 			</div>
       <div data-role="content">
         <form id="respondform" action="/rsvp.html" method="post">
@@ -37,7 +37,7 @@
             });
           </script>
         <% end %>
-        <a data-role="button" href="#" onclick="clearSelector('#respondselector'); return false;">Clear all selected times</a>
+        <a data-role="button" href="#" onclick="clearSelector2('#respondselector'); return false;">Clear all selected times</a>
 			</div>
 			<div data-role="footer">
 				<span class="ui-title">

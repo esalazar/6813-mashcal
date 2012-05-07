@@ -126,6 +126,10 @@ var clearSelector = function(id) {
   $( id + " .selector-hour").removeClass("selector-selected");
 }
 
+var clearSelector2 = function(id) {
+  $( id + " .selector-hour").removeClass("selector-respond-accept");
+}
+
 var schedule_random_times = function(id) {
   var sel = $(id);
   for (var h=currentHour; h < currentHour + 4; h++) {
