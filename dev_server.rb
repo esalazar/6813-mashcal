@@ -45,8 +45,12 @@ get "/respond" do
   @times = []
   DB[:event_to_time].filter(:event_id => @event[:id]).each do |ett|
     @times << DB[:allotted_time].filter(:id => ett[:allotted_time_id]).first
+  end  
+  invite = DB[:invite].filter(:user_id => session[:user][:id], :event_id => params[:event]).first
+  @accepted_times = []
+  DB[:response].filter(:invite_id => invite[:id]).each do |res|
+    @accepted_times << DB[:allotted_time].filter(:id => res[:allotted_id]).first
   end
-  p @times
   erb :respond
 end
 

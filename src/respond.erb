@@ -37,6 +37,14 @@
             });
           </script>
         <% end %>
+		<% for @time in @accepted_times %>
+          <script>
+            var boom = <%= @time[:start_time] %>;
+            $("#respondselector [date-ms='"+boom+"']").each(function() {
+              $(this).addClass("selector-respond-accept");
+            });
+          </script>
+        <% end %>
         <a data-role="button" href="#" onclick="clearSelector2('#respondselector'); return false;">Clear all selected times</a>
 			</div>
 			<div data-role="footer">
