@@ -25,7 +25,7 @@
       <div data-role="content">
         <form id="respondform" action="/rsvp.html" method="post">
           <input type="hidden" name="event_id" value="<%= @event[:id] %>" />
-          <input id="times" type="hidden" name="times" value="" />
+          <input id="respondtimes" type="hidden" name="times" value="" />
         </form>
         <div id="respondselector"></div>
         <script>selectorize("#respondselector", false);</script>

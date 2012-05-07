@@ -162,6 +162,16 @@ var formize = function(id) {
   $("#times").val(str);
 }
 
+var formize = function(id) {
+  var str = "";
+  $(id + " .selector-selected").each(function() {
+    str += $(this).attr("date-ms");
+    str += ",";
+  })
+  $("#respondtimes").val(str);
+}
+
+
 var invitize = function(id) {
   var str = "";
   $(id + " li[data-theme='g']").each(function() {
