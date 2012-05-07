@@ -164,7 +164,7 @@ var formize = function(id) {
 
 var formize2 = function(id) {
   var str = "";
-  $(id + " .selector-selected").each(function() {
+  $(id + " .selector-respond-accept").each(function() {
     str += $(this).attr("date-ms");
     str += ",";
   })
