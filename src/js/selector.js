@@ -162,7 +162,7 @@ var formize = function(id) {
   $("#times").val(str);
 }
 
-var formize = function(id) {
+var formize2 = function(id) {
   var str = "";
   $(id + " .selector-selected").each(function() {
     str += $(this).attr("date-ms");
