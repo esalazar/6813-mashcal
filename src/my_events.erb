@@ -23,15 +23,16 @@
 				<h1>My Events</h1>
 			 </div>
 			<div data-role="content">
-				<ul data-role="listview" data-theme="c">
+				<ul id="event_listing" data-role="listview" data-theme="c">
 					<% for @event in @events %>
-					<li><a href="/ajax/respond?event=<%= @event[:id] %>">
+					<li><a href="">
 						<h3><%= @event[:title] %></h3>
 						<p><strong><%= session[:user][:display_name] %></strong></p>
 						<p><%= @event[:description] %></p>
 					</a></li>
 					<% end %>
 				</ul>
+				<script>$("#my_events").bind("pageinit", function() { $("#event_listing li .ui-icon").remove(); })</script>
 			</div>
 		</div>
 	</body>

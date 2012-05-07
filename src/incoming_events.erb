@@ -34,7 +34,7 @@
 					<% end %>
 					<li data-role="list-divider" role="heading">RSVP'd events <span class="ui-li-count"><%= @rsvpd_events.count %></span></li>
 					<% for @event in @rsvpd_events %>
-					<li><a href="/ajax/respond?event=<%= @event[:id] %>">
+					<li><a href="/respond?event=<%= @event[:id] %>">
 						<h3><%= @event[:title] %></h3>
 						<p><strong><%= session[:user][:display_name] %></strong></p>
 						<p><%= @event[:description] %></p>
