@@ -147,6 +147,19 @@ post "/invite.html" do
   erb :invite
 end
 
+# expects to be referred from schedule.html
+post "/rsvp.html" do
+  invite = DB[:invite].filter(:user_id => session[:user][:id], :event_id => params[:event_id]).first
+  params[:times].split(",").each do |time|
+    DB[:allotted_time].insert(:start_time => time.to_i,
+                             :end_time => time.to_i + 1000 * 60 * 60)
+    alloted_time = DB[:allotted_time].filter(:start_time => time.to_i,
+                             :end_time => time.to_i + 1000 * 60 * 60).first
+    DB[:response].insert(:allotted_id => allotted_time[:id], :invite_id => invite[:id])
+  end
+  "<html><body><script>window.location='/index.html';</script></body></html>"
+end
+
 post "/ajax/invite" do
   p params[:invitees]
   params[:invitees].split(",").each do |time|
