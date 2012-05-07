@@ -40,6 +40,16 @@ get "/index.html" do
 	erb :index
 end
 
+get "/respond" do
+  @event = DB[:event].filter(:id => params[:event]).first
+  @times = []
+  DB[:event_to_time].filter(:event_id => @event[:id]).each do |ett|
+    @times << DB[:allotted_time].filter(:id => ett[:allotted_time_id]).first
+  end
+  p @times
+  erb :respond
+end
+
 get "/invite.html" do
   contacts = []
   DB[:contacts].filter(:from_id => session[:user][:id]).each do |c|
@@ -97,7 +107,7 @@ end
 
 get "/ajax/logout" do
   session[:user] = nil
-  redirect "/"
+  "<html><body><script>window.location='/';</script></body></html>"
 end
 
 # expects to be referred from event.html
