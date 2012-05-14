@@ -88,6 +88,8 @@ get "/incoming_events.html" do
 	@rsvpd_events = Hash.new { Array.new }
 	DB[:invite].filter(:user_id => session[:user][:id]).each do |i|
     event = DB[:event].filter(:id => i[:event_id]).first
+    inviter = DB[:user].filter(:id => event[:creator_id]).first
+    event[:inviter] = inviter
 		if DB[:response].filter(:invite_id => i[:id]).count == 0
 			new_events << event
 		else

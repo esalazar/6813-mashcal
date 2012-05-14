@@ -28,7 +28,7 @@
 					<% for @event in @new_events %>
 					<li><a href="/respond?event=<%= @event[:id] %>">
 						<h3><%= @event[:title] %></h3>
-						<p><strong><%= session[:user][:display_name] %></strong></p>
+						<p><strong><%= @event[:inviter][:display_name] %></strong></p>
 						<p><%= @event[:description] %></p>
 					</a></li>
 					<% end %>
@@ -36,7 +36,7 @@
 					<% for @event in @rsvpd_events %>
 					<li><a href="/respond?event=<%= @event[:id] %>">
 						<h3><%= @event[:title] %></h3>
-						<p><strong><%= session[:user][:display_name] %></strong></p>
+						<p><strong><%= @event[:inviter][:display_name] %></strong></p>
 						<p><%= @event[:description] %></p>
 					</a></li>
 					<% end %>
